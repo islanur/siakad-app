@@ -21,10 +21,9 @@ class StudentFactory extends Factory
         return [
             'student_number' => fake()->unique()->numerify('STD-###'),
             'reg_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
-            'user_id' => fake()->unique()->randomElement(User::whereHas('roles', function ($q) {
-                $q->where('name', 'mahasiswa');
-            })->get())['id'],
-            'department_id' => fake()->randomElement(Department::all())['id'],
+            'user_id' => User::factory(), //fake()->unique()->randomElement(User::where('role', 'mahasiswa')->get())['id'],
+            'department_id' =>
+            fake()->randomElement(Department::all())['id'],
         ];
     }
 }

@@ -23,9 +23,7 @@ class LecturerFactory extends Factory
             'lecturer_number' => fake()->unique()->numerify('LCT-###'),
             'reg_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'position' => fake()->randomElement(Lecturer::$position),
-            'user_id' => fake()->unique()->randomElement(User::whereHas('roles', function ($q) {
-                $q->where('name', 'dosen');
-            })->get())['id'],
+            'user_id' => User::factory(),
             'department_id' => fake()->randomElement(Department::all())['id']
         ];
     }

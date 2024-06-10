@@ -20,10 +20,12 @@ class LecturerFactory extends Factory
     public function definition(): array
     {
         return [
-            'lecturer_number' => fake()->regexify('[A-Z]{2}[0-9]{7}'),
+            'lecturer_number' => fake()->unique()->numerify('LCT-###'),
             'reg_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'position' => fake()->randomElement(Lecturer::$position),
-            'user_id' => User::factory(),
+            'user_id' => fake()->unique()->randomElement(User::whereHas('roles', function ($q) {
+                $q->where('name', 'dosen');
+            })->get())['id'],
             'department_id' => fake()->randomElement(Department::all())['id']
         ];
     }

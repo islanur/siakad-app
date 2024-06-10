@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('code', 20)->unique();
             $table->string('name');
+            $table->tinyInteger('semester');
             $table->tinyInteger('credits');
             $table->boolean('is_must')->default(true);
             $table->enum('type', Course::$courseTypes)->default('Teori');

@@ -22,7 +22,6 @@ class User extends Authenticatable
         'place_of_birth',
         'gender',
         'phone',
-        // 'role',
         'is_registered'
     ];
 
@@ -30,13 +29,6 @@ class User extends Authenticatable
         'Laki-laki',
         'Perempuan'
     ];
-
-    // public static array $role = [
-    //     'admin',
-    //     'dosen',
-    //     'mahasiswa',
-    //     'guest'
-    // ];
 
     protected $hidden = [
         'password',

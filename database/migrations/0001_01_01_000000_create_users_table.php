@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('place_of_birth', 50)->nullable();
             $table->enum('gender', ['Laki-laki', 'Perempuan'])->default('Laki-Laki');
             $table->string('phone', 50)->nullable();
-            // $table->enum('role', User::$role)->default('guest');
             $table->boolean('is_registered')->default(false);
             $table->rememberToken();
             $table->timestamps();

@@ -7,16 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'username',
@@ -26,7 +22,7 @@ class User extends Authenticatable
         'place_of_birth',
         'gender',
         'phone',
-        'role',
+        // 'role',
         'is_registered'
     ];
 
@@ -35,12 +31,12 @@ class User extends Authenticatable
         'Perempuan'
     ];
 
-    public static array $role = [
-        'admin',
-        'dosen',
-        'mahasiswa',
-        'guest'
-    ];
+    // public static array $role = [
+    //     'admin',
+    //     'dosen',
+    //     'mahasiswa',
+    //     'guest'
+    // ];
 
     protected $hidden = [
         'password',

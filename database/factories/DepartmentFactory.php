@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +18,20 @@ class DepartmentFactory extends Factory
      */
     public function definition(): array
     {
+        $departments = [
+            'Sistem Informasi',
+            'Sistem Komputer',
+            'Manajemen Informatika',
+            'Teknik Informatika'
+        ];
+
         return [
-            'code' => fake()->unique()->regexify('[A-Z]{2}[0-9]{3}[A-Z]{3}'),
-            'name' => fake()->unique()->randomElement(Department::$departments)
+            'code' => fake()->unique()->numerify('DPT-###'),
+            'name' => fake()->unique()->randomElement($departments),
+            'head' => User::whereHas('roles', function ($q) {
+                $q->where('name', 'kaprodi');
+            })->inRandomOrder()->first()->id ?? null,
+            'description' => fake()->sentence
         ];
     }
 }

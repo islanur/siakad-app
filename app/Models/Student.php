@@ -24,8 +24,8 @@ class Student extends Model
         return $this->belongsTo(Department::class);
     }
 
-    // public function enrollments(): HasMany
-    // {
-    //     return $this->hasMany(Enrollment::class);
-    // }
+    public function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }

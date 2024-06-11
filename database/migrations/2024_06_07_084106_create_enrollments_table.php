@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Student::class, 'student_id');
-            $table->foreignIdFor(Course::class, 'course_id');
+            $table->foreignIdFor(Student::class, 'student_id')->constrained();
+            $table->foreignIdFor(Course::class, 'course_id')->constrained();
             $table->tinyInteger('semester');
-            $table->dateTime('year');
+            $table->year('year');
             $table->timestamps();
         });
     }

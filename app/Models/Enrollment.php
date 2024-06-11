@@ -17,8 +17,6 @@ class Enrollment extends Model
         'year',
     ];
 
-    protected $casts = ['year' => 'datetime'];
-
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);

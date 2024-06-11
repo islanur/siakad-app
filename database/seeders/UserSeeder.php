@@ -52,14 +52,26 @@ class UserSeeder extends Seeder
 
         Department::factory(4)->create();
 
-        $lecturer = User::whereHas('roles', function ($q) {
-            $q->where('name', 'dosen');
-        })->count();
-        Lecturer::factory($lecturer)->create();
+        $lecturers = User::whereHas('roles', function ($q) {
+            $q->where('name', ['dosen', 'ketua', 'kaprodi', 'baak']);
+        })->get();
 
-        $student = User::whereHas('roles', function ($q) {
+        foreach ($lecturers as $lecturer) {
+            Lecturer::factory()->create([
+                'user_id' => $lecturer->id,
+                'department_id' => Department::inRandomOrder()->first()->id,
+            ]);
+        }
+
+        $students = User::whereHas('roles', function ($q) {
             $q->where('name', 'mahasiswa');
-        })->count();
-        Student::factory($student)->create();
+        })->get();
+
+        foreach ($students as $student) {
+            Student::factory()->create([
+                'user_id' => $lecturer->id,
+                'department_id' => Department::inRandomOrder()->first()->id,
+            ]);
+        }
     }
 }

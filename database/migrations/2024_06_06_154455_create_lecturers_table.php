@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('lecturer_number', 20)->unique();
             $table->date('reg_date');
             $table->enum('position', Lecturer::$position)->default('Dosen Tetap');
-            $table->foreignIdFor(User::class)->unique();
-            $table->foreignIdFor(Department::class);
+            $table->foreignIdFor(User::class)->constrained()->unique();
+            $table->foreignIdFor(Department::class)->constrained();
             $table->timestamps();
         });
     }

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('student_number', 20);
             $table->date('reg_date');
-            $table->foreignIdFor(User::class)->unique();
-            $table->foreignIdFor(Department::class);
+            $table->foreignIdFor(User::class)->constrained()->unique();
+            $table->foreignIdFor(Department::class)->constrained();
             $table->timestamps();
         });
     }

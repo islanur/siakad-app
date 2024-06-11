@@ -24,7 +24,7 @@ class LecturerFactory extends Factory
             'reg_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'position' => fake()->randomElement(Lecturer::$position),
             'user_id' => User::factory(),
-            'department_id' => fake()->randomElement(Department::all())['id']
+            'department_id' => Department::factory() // fake()->randomElement(Department::all())['id']
         ];
     }
 }

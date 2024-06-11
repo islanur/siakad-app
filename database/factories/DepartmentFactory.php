@@ -18,16 +18,14 @@ class DepartmentFactory extends Factory
      */
     public function definition(): array
     {
-        $departments = [
-            'Sistem Informasi',
-            'Sistem Komputer',
-            'Manajemen Informatika',
-            'Teknik Informatika'
-        ];
-
         return [
             'code' => fake()->unique()->numerify('DPT-###'),
-            'name' => fake()->unique()->randomElement($departments),
+            'name' => fake()->unique()->randomElement([
+                'Sistem Informasi',
+                'Sistem Komputer',
+                'Manajemen Informatika',
+                'Teknik Informatika'
+            ]),
             'head' => User::whereHas('roles', function ($q) {
                 $q->where('name', 'kaprodi');
             })->inRandomOrder()->first()->id ?? null,

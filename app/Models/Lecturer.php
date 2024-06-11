@@ -25,6 +25,6 @@ class Lecturer extends Model
 
     public static array $position = [
         'Dosen Tetap',
-        'Dosen Luar Biasa (LB)',
+        'Dosen Tidak Tetap',
     ];
 }

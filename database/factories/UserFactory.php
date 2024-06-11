@@ -56,57 +56,11 @@ class UserFactory extends Factory
         ]);
     }
 
-    // Indicate role to Mahasiswa and is_registered = true
-    public function student(): static
+    // Indicate is_registered to true
+    public function registered(): static
     {
         return $this->state(fn (array $attributes) => [
-            // 'role' => 'mahasiswa',
             'is_registered' => true
-        ])->afterCreating(function (User $user) {
-            $user->assignRole('mahasiswa');
-        });
-    }
-
-    // Indicate role to Dosen and is_registered = true
-    public function lecturer(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            // 'role' => 'dosen',
-            'is_registered' => true
-        ])->afterCreating(function (User $user) {
-            $user->assignRole('dosen');
-        });
-    }
-
-    // Indicate role to Admin
-    public function admin(): static
-    {
-        return $this->afterCreating(function (User $user) {
-            $user->assignRole('admin');
-        });
-    }
-
-    // Indicate role to kaprodi dan dosen
-    public function kaprodi(): static
-    {
-        return $this->afterCreating(function (User $user) {
-            $user->assignRole('kaprodi', 'dosen');
-        });
-    }
-
-    // Indicate role to baak dan dosen
-    public function baak(): static
-    {
-        return $this->afterCreating(function (User $user) {
-            $user->assignRole('baak', 'dosen');
-        });
-    }
-
-    // Indicate role to staf
-    public function staf(): static
-    {
-        return $this->afterCreating(function (User $user) {
-            $user->assignRole('staf');
-        });
+        ]);
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('is_must')->default(true);
             $table->enum('type', Course::$courseTypes)->default('Teori');
             $table->text('description')->nullable();
-            $table->foreignIdFor(Department::class);
+            $table->foreignIdFor(Department::class)->constrained();
             $table->timestamps();
         });
     }

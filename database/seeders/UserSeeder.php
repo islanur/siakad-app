@@ -24,15 +24,15 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('admin');
 
-        $ketua = User::factory()->create();
+        $ketua = User::factory()->registered()->create();
         $ketua->assignRole('ketua', 'dosen');
 
-        $kaprodi = User::factory(4)->create();
+        $kaprodi = User::factory(4)->registered()->create();
         foreach ($kaprodi as $user) {
             $user->assignRole('kaprodi', 'dosen');
         }
 
-        $baak = User::factory()->create();
+        $baak = User::factory()->registered()->create();
         $baak->assignRole('baak', 'dosen');
 
         $staf = User::factory(5)->create();
@@ -40,12 +40,12 @@ class UserSeeder extends Seeder
             $user->assignRole('staf');
         }
 
-        $dosen = User::factory(10)->create();
+        $dosen = User::factory(10)->registered()->create();
         foreach ($dosen as $user) {
             $user->assignRole('dosen');
         }
 
-        $mahasiswa = User::factory(100)->create();
+        $mahasiswa = User::factory(100)->registered()->create();
         foreach ($mahasiswa as $user) {
             $user->assignRole('mahasiswa');
         }

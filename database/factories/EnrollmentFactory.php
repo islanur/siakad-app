@@ -19,8 +19,8 @@ class EnrollmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'student_id' => Student::factory(), // fake()->randomElement(Student::all())['id'],
-            'course_id' => Course::factory(), // fake()->randomElement(Course::all())['id'],
+            'student_id' => fake()->randomElement(Student::all())['id'],  // Student::factory(),
+            'course_id' => fake()->randomElement(Course::all())['id'], // Course::factory(),
             'semester' => fake()->numberBetween(1, 8),
             'year' => fake()->year
         ];

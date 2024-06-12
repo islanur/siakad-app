@@ -51,11 +51,36 @@
             </p>
           </div>
 
-          <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-400">Illo sint voluptas.
-            Error
-            voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
-            exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
+          <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-400">{{ $department->description }}
+          </p>
         </div>
+        @if ($department->headOfDepartment)
+          <div class="relative mt-8 flex items-center gap-x-4">
+            <img src="{{ $department->headOfDepartment->profile_image }}" alt="Profile Image"
+              class="h-10 w-10 rounded-full bg-gray-50">
+            <div class="text-sm leading-6">
+              <p class="font-semibold text-gray-900 dark:text-gray-200">
+                <a href="#">
+                  <span class="absolute inset-0"></span>
+                  {{ $department->headOfDepartment->name }}
+                </a>
+              </p>
+              <p class="text-gray-600 dark:text-gray-500">Ketua Program Studi</p>
+            </div>
+          </div>
+        @else
+          <div class="relative mt-8 flex items-center gap-x-4">
+            <div class="text-sm leading-6">
+              <p class="font-semibold text-gray-900 dark:text-gray-200">
+                <a href="#">
+                  <span class="absolute inset-0"></span>
+                  Tidak ada data ketua program studi
+                </a>
+              </p>
+            </div>
+          </div>
+        @endif
       </div>
     @endforeach
+  </div>
 </x-layout>

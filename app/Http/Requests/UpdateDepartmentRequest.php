@@ -11,7 +11,7 @@ class UpdateDepartmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'code' => 'required|max:10|min:2|unique:departments,code,' . $this->department->id,
+            'name' => 'required|max:100|min:3|unique:departments,name,' . $this->department->id,
+            'head' => 'required|exists:users,id',
+            'description' => 'nullable|string',
         ];
     }
 }

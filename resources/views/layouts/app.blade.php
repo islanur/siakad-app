@@ -14,6 +14,7 @@
   {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" /> --}}
 
   <!-- Scripts -->
+  <script src="//unpkg.com/alpinejs" defer></script>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

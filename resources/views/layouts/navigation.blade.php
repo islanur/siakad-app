@@ -18,8 +18,8 @@
           <x-nav-link :href="route('department.index')" :active="request()->routeIs('department*')">
             {{ __('Program Studi') }}
           </x-nav-link>
-          <x-nav-link :href="route('enroll.index')" :active="request()->routeIs('enroll*')">
-            {{ __('Transaksi') }}
+          <x-nav-link :href="route('course.index')" :active="request()->routeIs('course*')">
+            {{ __('Matakuliah') }}
           </x-nav-link>
         </div>
       </div>
@@ -85,8 +85,8 @@
       <x-responsive-nav-link :href="route('department.index')" :active="request()->routeIs('department*')">
         {{ __('Program Studi') }}
       </x-responsive-nav-link>
-      <x-responsive-nav-link :href="route('enroll.index')" :active="request()->routeIs('enroll*')">
-        {{ __('Transaksi') }}
+      <x-responsive-nav-link :href="route('course.index')" :active="request()->routeIs('course*')">
+        {{ __('Matakuliah') }}
       </x-responsive-nav-link>
     </div>
 

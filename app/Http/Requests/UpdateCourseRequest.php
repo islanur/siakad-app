@@ -11,7 +11,7 @@ class UpdateCourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'code' => 'required|max:20|min:2|unique:courses,code,' . $this->course->id,
+            'name' => 'required|max:100|min:3|unique:courses,name,' . $this->course->id,
+            'semester' => 'required|integer|min:1|max:8',
+            'credits' => 'required|integer|min:1|max:6',
+            'is_must' => 'required|boolean',
+            'type' => 'required|in:Teori,Praktikum,Praktek Lapangan',
+            'description' => 'nullable|string',
+            'department_id' => 'required|exists:departments,id',
         ];
     }
 }

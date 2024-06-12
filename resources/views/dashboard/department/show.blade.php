@@ -60,14 +60,12 @@
         <div class="grid grid-cols-1 justify-items-end gap-y-4">
           <a href="{{ route('department.edit', ['department' => $department]) }}"
             class="text-indigo-600 hover:text-indigo-500 dark:text-lime-400 dark:hover:text-lime-500">Edit →</a>
-          <form method="POST" class="space-y-0"
-            action="{{ route('department.destroy', ['department' => $department]) }}">
-            @csrf
+          <x-form class="space-y-0" action="{{ route('department.destroy', ['department' => $department]) }}">
             @method('DELETE')
             <button type="submit"
               class="text-indigo-600 hover:text-indigo-500 dark:text-rose-400 dark:hover:text-rose-500">Delete
               →</button>
-          </form>
+          </x-form>
         </div>
       </div>
     </dl>

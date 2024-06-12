@@ -6,17 +6,16 @@
           {{ $title }}
         </h2>
 
-        <form action="{{ isset($department) ? route('department.update', $department) : route('department.store') }}"
-          method="POST" class="mt-6 space-y-6">
-          @csrf
+        <x-form action="{{ isset($department) ? route('department.update', $department) : route('department.store') }}"
+          class="mt-6 space-y-6">
           @if (isset($department))
             @method('PUT')
           @endif
 
           <div>
             <x-input-label for="code" :value="__('Kode Program Studi')" />
-            <x-text-input id="code" class="block mt-1 w-full" type="text" name="code" :value="old('code', $department->code ?? '')"
-              required autofocus />
+            <x-text-input id="code" class="block mt-1 w-full" type="text" name="code" :value="old('code', $department->code ?? '')" required
+              autofocus />
             <x-input-error class="mt-2" :messages="$errors->get('code')" />
           </div>
 
@@ -49,7 +48,7 @@
               {{ isset($department) ? __('Update Data') : __('Simpan Data') }}
             </x-primary-button>
           </div>
-        </form>
+        </x-form>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('dashboard')->group(function () {
     Route::resource('/department', DepartmentController::class);
+    Route::resource('/course', CourseController::class);
     Route::resource('/enroll', EnrollmentController::class);
 })->middleware(['auth', 'verified']);
 

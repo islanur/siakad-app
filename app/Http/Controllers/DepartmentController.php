@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
-<<<<<<< HEAD
-=======
-use App\Models\Lecturer;
->>>>>>> 3dc96b1aacbbcbdec59d3b4be2dd3bc048f9b446
 use App\Models\Student;
 use App\Models\User;
 
@@ -28,7 +24,7 @@ class DepartmentController extends Controller
 
     public function create()
     {
-        return view('dashboard.department.create', [
+        return view('dashboard.department.forms', [
             'title' => 'Program Studi | Tambah Data',
             'headOfDepartment' => User::whereHas('roles', function ($q) {
                 $q->where('name', 'kaprodi');
@@ -58,7 +54,7 @@ class DepartmentController extends Controller
 
     public function edit(Department $department)
     {
-        return view('dashboard.department.edit', [
+        return view('dashboard.department.forms', [
             'title' => 'Edit Program Studi | ' . $department->name,
             'department' => $department,
             'headOfDepartment' => User::whereHas('roles', function ($q) {

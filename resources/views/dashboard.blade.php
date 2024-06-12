@@ -10,7 +10,7 @@
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
           {{-- Content --}}
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12" x-data="dashboardData()">
             <!-- Statistics Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
@@ -66,11 +66,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Statistik Mahasiswa</h3>
-                <canvas id="studentsChart"></canvas>
+                <canvas id="studentsChart" x-init="renderStudentsChart()"></canvas>
               </div>
               <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Statistik Pendaftaran</h3>
-                <canvas id="enrollmentsChart"></canvas>
+                <canvas id="enrollmentsChart" x-init="renderEnrollmentsChart()"></canvas>
               </div>
             </div>
 
@@ -97,49 +97,62 @@
 
   @push('scripts')
     <script>
-      const studentsCtx = document.getElementById('studentsChart').getContext('2d');
-      const studentsChart = new Chart(studentsCtx, {
-        type: 'bar',
-        data: {
-          labels: {!! json_encode($studentsChartLabels) !!},
-          datasets: [{
-            label: 'Jumlah Mahasiswa',
-            data: {!! json_encode($studentsChartData) !!},
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
+      function dashboardData() {
+        return {
+          studentsChartData: {!! json_encode($studentsChartData) !!},
+          studentsChartLabels: {!! json_encode($studentsChartLabels) !!},
+          enrollmentsChartData: {!! json_encode($enrollmentsChartData) !!},
+          enrollmentsChartLabels: {!! json_encode($enrollmentsChartLabels) !!},
 
-      const enrollmentsCtx = document.getElementById('enrollmentsChart').getContext('2d');
-      const enrollmentsChart = new Chart(enrollmentsCtx, {
-        type: 'line',
-        data: {
-          labels: {!! json_encode($enrollmentsChartLabels) !!},
-          datasets: [{
-            label: 'Jumlah Pendaftaran',
-            data: {!! json_encode($enrollmentsChartData) !!},
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+          renderStudentsChart() {
+            const ctx = document.getElementById('studentsChart').getContext('2d');
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: this.studentsChartLabels,
+                datasets: [{
+                  label: 'Jumlah Mahasiswa',
+                  data: this.studentsChartData,
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          },
+
+          renderEnrollmentsChart() {
+            const ctx = document.getElementById('enrollmentsChart').getContext('2d');
+            new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: this.enrollmentsChartLabels,
+                datasets: [{
+                  label: 'Jumlah Pendaftaran',
+                  data: this.enrollmentsChartData,
+                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
           }
         }
-      });
+      }
     </script>
   @endpush
 </x-app-layout>

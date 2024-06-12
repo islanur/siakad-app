@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('gender', ['Laki-laki', 'Perempuan'])->default('Laki-Laki');
             $table->string('phone', 50)->nullable();
             $table->boolean('is_registered')->default(false);
+            $table->string('profile_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

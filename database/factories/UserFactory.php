@@ -35,18 +35,10 @@ class UserFactory extends Factory
             'place_of_birth' => fake()->city(),
             'gender' => fake()->randomElement(User::$gender),
             'phone' => fake()->phoneNumber,
+            'profile_image' => 'https://randomuser.me/api/portraits/' . (fake()->randomElement(['men', 'women'])) . '/' . fake()->numberBetween(0, 99) . '.jpg',
             'remember_token' => Str::random(10),
         ];
     }
-
-    // public function configure()
-    // {
-    //     return $this->afterCreating(function (User $user) {
-    //         $roleNames = ['admin', 'ketua', 'kaprodi', 'baak', 'staf', 'dosen', 'mahasiswa', 'guest'];
-    //         $role = Role::where('name', fake()->randomElement($roleNames))->first();
-    //         $user->assignRole($role);
-    //     });
-    // }
 
     // Indicate that the model's email address should be unverified.
     public function unverified(): static

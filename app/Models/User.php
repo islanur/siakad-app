@@ -22,7 +22,8 @@ class User extends Authenticatable
         'place_of_birth',
         'gender',
         'phone',
-        'is_registered'
+        'is_registered',
+        'profile_image',
     ];
 
     public static array $gender = [
